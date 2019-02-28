@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.kgc.mapper.UserMapper">
+
+    <!-- 通过用户名和密码查询User -->
+    <select id="findUserByPhoneAndPassword" resultType="User" parameterType="User">
+        select * from user where phone = #{phone} and passWord = #{passWord}
+    </select>
+
+
+    <insert id="addUser" parameterType="User">
+       insert into user (name,gender,passWord,phone)
+        values(#{name},#{gender},#{passWord},#{phone})
+
+    </insert>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from user where id=#{id}
+
+    </delete>
+
+
+    <update id="updateUser" parameterType="User">
+        update user set name=#{name},gender=#{gender},passWord=#{passWord},phone=#{phone}
+        where id=#{id}
+    </update>
+
+
+    <select id="queryOne" parameterType="java.lang.Integer" resultType="User">
+        select id,name,gender,passWord,phone
+        from user
+        where id=#{id}
+
+    </select>
+
+    <select id="queryAll" resultType="User">
+        select id,name,gender,passWord,phone
+        from user
+    </select>
+
+
+
+</mapper>
